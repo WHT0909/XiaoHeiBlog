@@ -3,6 +3,8 @@ title: LaTeX笔记/提纲模板
 date: 2026-01-07 20:57:05
 tags:
     - LaTeX
+categories:
+    - 其他计算机技术
 ---
 
 自用的 LaTeX 模板
