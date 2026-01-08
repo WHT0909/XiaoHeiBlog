@@ -13,7 +13,7 @@
     "version": "8.1.1"
   },
   "dependencies": {
-    "hexo": "^8.0.0",
+    "hexo": "^7.1.1",
     "hexo-deployer-git": "^4.0.0",
     "hexo-generator-archive": "^2.0.0",
     "hexo-generator-category": "^2.0.0",
@@ -28,6 +28,7 @@
     "hexo-tag-map": "^1.2.1",
     "hexo-theme-icarus": "^6.1.1",
     "hexo-theme-landscape": "^1.0.0",
+    "hexo-util": "^3.2.0",
     "semver": "^7.7.3"
   },
   "devDependencies": {
