@@ -82,6 +82,7 @@ MathJax.Hub.Config({
     <h3>目录</h3>
     <a href="#chapter1">1. 有监督学习概述</a><br>
     <a href="#chapter1.1" style="margin-left: 2em;">1.1 线性模型</a><br>
+    <a href="#chapter1.2" style="margin-left: 2em;">1.2 最小二乘法</a><br>
 </div><br><br>
 
 <h2 id="chapter1">1. 有监督学习概述</h2>
@@ -98,52 +99,25 @@ MathJax.Hub.Config({
     <p>在机器学习中，带有 "hat" 的变量是实际估计出来的，有误差的结果；不带 "hat" 的是真实但未知的参数</p>
 </div>
 
-<p>$(X, \hat{Y})$构成了一个 p + 1 维的"超平面"，此时输入是 p 维，输出是 1 维</p>
-
-<div class="blue-card">
-    <p>超平面：在 n 维欧氏空间中，维度为 n - 1 的线性子空间</p>
-</div>
-
-<p>$f(x, y)=X^{T}\hat{\beta}$的梯度$\nabla f=\beta$</p>
-
-<div class="proof-card">
-<p><strong>证明</strong></p>
-
-$$X^{T}=(X_{1}, X_{2}, \ldots, X_{p})$$
-
-$$f(X)=\beta_{1}X_{1}+\beta_{2}X_{2}+\cdots+\beta_{p}X_{p}$$
-
-<p>$f(X)$的梯度定义如下：</p>
-
-$$
-\nabla f(X)=
-\begin{bmatrix}
-\frac{\partial f}{\partial X_{1}} \\
-\frac{\partial f}{\partial X_{2}} \\
-\vdots \\
-\frac{\partial f}{\partial X_{p}}
-\end{bmatrix}
-$$
-
-<p>对每一个$X_{i}$求偏导数，将得到对应的$\beta_{i}$，将所有的$\beta_{i}$拼接到一起即可得到$\beta$</p>
-
-$$
-\beta = 
-\begin{bmatrix}
-\beta_{1} \\
-\beta_{2} \\
-\vdots \\
-\beta_{p}
-\end{bmatrix}
-$$
-
-</div>
+<p>$f(x, y)=X^{T}\hat{\beta}$ &nbsp;的梯度&nbsp; $\nabla f=\beta$</p>
 
 <p><strong>直观理解：如果你站在 p 维的输入空间里，想要最快地爬到 $f(x,y)$（输出值）最高的地方，你应该沿着 $\beta$ 这个向量的方向走</strong></p>
 
 <p style="font-family: Times New Roman; font-size: 20px;">
 Page12: Viewed as a function over the p-dimensional input space, $f(X)=X^{T}\beta$ is linear, and the gradient $f^{'}(X)=\beta$ is a vector in input space that points in the steepest uphill direction.
 </p>
+
+<h3 id="chapter1.2">1.2 最小二乘法</h3>
+
+找到使残差平方和（RSS）最小的$\beta$向量训练模型
+
+$$ RSS(\beta)=\sum_{i=1}^{N} (y_{i}-x_{i}^{T}\beta)=(\mathbf{y}-\mathbf{X}\beta)^{T}(\mathbf{y}-\mathbf{X}\beta) $$
+
+数学基础：当$\mathbf{X}^{T}\mathbf{X}$不奇异时可求得
+
+$$\beta=(\mathbf{X}^{T}\mathbf{X})^{-1}(\mathbf{X}^{T}y)$$
+
+理解：线性二分类的本质就是找一个超平面将空间划分为两类。在二维平面里该超平面表现为决策曲线，通过$f(\mathbf{X})=\mathbf{X}^{T}\beta=t$进行划分（$t$为阈值，比如说$t=0.5$）
 
 <!-- 如果MathJax没有自动渲染，添加手动刷新 -->
 <script>
