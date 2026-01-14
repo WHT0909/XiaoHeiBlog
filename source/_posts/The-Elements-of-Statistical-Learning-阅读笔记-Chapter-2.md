@@ -84,6 +84,8 @@ MathJax.Hub.Config({
     } */
 </style>
 
+<p class="text-p"><em>Chapter2: Overview of Supervised Learning</em></p>
+
 <div class="catalog">
     <h3>目录</h3>
     <a href="#chapter1">1. 最小二乘法与 K 近邻</a><br>
@@ -93,7 +95,9 @@ MathJax.Hub.Config({
     <a href="#chapter2">2. 统计决策理论</a><br>
     <a href="#chapter3">3. 高维空间中的局部方法</a><br>
     <a href="#chapter4">4. 统计模型、监督学习和函数逼近</a><br>
-</div><br>
+    <a href="#chapter5">5. 结构化的回归模型</a><br>
+    <a href="#chapter6">6. 受限估计器的种类</a><br>
+</div>
 
 <h2 id="chapter1">1. 最小二乘法与 K 近邻</h2>
 
@@ -245,19 +249,45 @@ L(\theta)=\sum_{i=1}^{N}\log p_{g,\theta_{i}}(x_{i})
 $$
 其中$P_{r}(G=G_{k}|X=x)=p_{k, \theta}(x)$
 
+<h3 id="chapter5">5. 结构化的回归模型</h3>
 
+有无限种$f(x)$能够使 RSS 最小，通过添加不同的限制条件便能获得不同的$\hat{f}(x)$<em>：“存在无限多的可能限制条件，每种限制条件均会导致唯一解，因此这种模糊性仅被转移至约束条件的选择上。”</em>
 
+<p class="text-p">Page 33: There are infinitely many possible restrictions, each leading to a unique solution, so the ambiguity has simply been transferred to the choice of constraint.</p>
 
+选取的邻域越大，约束越强：当选取的邻域非常小时，相当于没有约束；但当选取的邻域很大时，例如在很大的邻域范围内线性拟合，则相当于对全局进行了线性拟合，这是一个很强的约束
 
+k-NN 的数学假设：对于输入$x_{0}$，其邻域内的$f(x)$是平滑变化（不突变）的，因此能用$x_{0}$邻域的$f(x)$估计当前的$f(x_{0})$
 
+<em>任何试图在小的各向同性邻域内生成局部变化函数的方法，在高维空间中都会遭遇问题 —— 这再次体现了维度诅咒。反之，所有克服维度问题的方法都需采用一种隐式或自适应的度量标准来衡量邻域，这种标准本质上不允许邻域在所有方向上同时保持微小</em>
 
+<p class="text-p">Page 33: One fact should be clear by now. Any method that attempts to produce locally varying functions in small isotropic neighborhoods will run into problems in high dimensions—again the curse of dimensionality. And conversely, all methods that overcome the dimensionality problems have an associated—and often implicit or adaptive—metric for measuring neighborhoods, which basically does not allow the neighborhood to be simultaneously small in all directions.</p>
 
+如果一个空间中的域（可以理解为“一个范围内”）在所有维度上的方向都均匀，则称其是“各向同性的”，例如三维空间中的球体。而如果域在某些维度上方向不均匀，如三维空间中的椭球体，则称其是“非各向同性的”。在高维空间中，数据非常稀疏，数据点之间的距离很远，因此小邻域内的数据量非常少。如果仍用“各向同性的”邻域度量规则，将面临数据数量不足的“维度诅咒”。而能解决维度诅咒的度量方法的共同点便是不让邻域在所有维度上都保持“小”，而是在数据密集分布的方向上扩大邻域范围，在数据稀疏的方向上缩小邻域范围，以此保证邻域内含有足量的数据，避免维度灾难。
 
+<img src="/img/邻域数据分布可视化.png" alt="邻域数据分布可视化">
 
+<h3 id="chapter6">6. 受限估计器的种类</h3>
 
+粗糙度惩罚（Roughness Penalty）
+$$
+PRSS(f, \lambda)=RSS(f)+\lambda J(f)
+$$
 
+其中$J(f)$为惩罚函数
 
+核方法（Kernel Methods）：局部邻域由核函数$K_{\lambda}(x, x_{0})$指定，将权重分配到$x_{0}$周围区域的$x$上。其中$x_{0}$是邻域中心，$x$是周边待分配权重的点，$\lambda$是核的宽度。$K_{\lambda}(x, x_{0})$越大，表示$x$对$x_{0}$的贡献越大
 
+基函数（Basis Function）
+$$
+f_{\theta}(x)=\sum_{m=1}^{M}\theta_{m}h_{m}(x)
+$$
+
+径向基函数（Radial Basis Functions）：位于特定质心的，对称的 p 维核
+$$
+f_{\theta}(x)=\sum_{m=1}^{M}K_{\lambda_{m}}(\mu_{m}, x)\theta_{m}
+$$
+高斯核$K_{\lambda}(\mu, x) = e^{-\frac{\|\|x - \mu\|\|^2}{2\lambda}}$比较常用，其中$\|\|$表示向量的范数，即两向量间的欧氏距离
 
 <!-- 如果MathJax没有自动渲染，添加手动刷新 -->
 <script>
