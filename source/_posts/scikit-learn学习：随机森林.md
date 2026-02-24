@@ -10,10 +10,12 @@ categories:
 scikit-learn 学习笔记
 <!-- more -->
 
+<div style="font-family: KaiTi">
 一个多月没写博客了，感觉表达能力退化了不少。新年的第一条博客就开一个新坑吧：本系列将介绍 scikit-learn 内置的一些机器学习模型的构建和训练方法，以及其他的相关知识。主要学习资源来自最近发现的一个 b 站 up 主“java1234官方”的系列视频<a href="https://www.bilibili.com/video/BV11reUzEEPH?spm_id_from=333.788.videopod.episodes&vd_source=0ea0c7956df75b2935422822b2001158">2026版 Scikit-learn Python机器学习 视频教程(无废话版) 玩命更新中~</a>。这个栏目的主要目的是学习并记录一些常用的调库方法以及相关的模型训练工作流，对机器学习模型的工作原理、数学基础等不作过多介绍（<strong>致力于先把代码跑起来</strong>）。本系列第一个要介绍的机器学习模型是随机森林（Random Forest）
+</div><br>
 
 <div class="catalog">
-    <h3>目录</h3>
+    <h3 style="font-family: KaiTi">目录</h3>
     <a href="#chapter1">1. scikit-learn 简介</a><br>
     <a href="#chapter2">2. 随机森林算法（Random Forest）</a><br>
     <a href="#chapter3">3. 代码逐步拆解</a><br>
