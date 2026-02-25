@@ -134,8 +134,8 @@ axios.post('https://mock.apifox.cn/m1/3083103-0-default/emps/update', 'id=1').th
 
 值得注意的是`this.empList = result.data.data`，result 是服务器返回的对象，包含了 data, status, headers, statusText 等属性，其中result 和 result.data 内容如下：
 
-<img src='/img/Vue-Ajax-result.png' alt="图1. result的内容"><br>
-<img src='/img/Vue-Ajax-result.data.png' alt="图2. result.data的内容"><br>
+<img src='/img/Ajax学习笔记/Vue-Ajax-result.png' alt="图1. result的内容"><br>
+<img src='/img/Ajax学习笔记/Vue-Ajax-result.data.png' alt="图2. result.data的内容"><br>
 
 而我们要获取的是其中的 data 字段，因此将当前实例下的 empList 赋值为 result.data.data
 

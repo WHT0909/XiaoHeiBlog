@@ -38,7 +38,7 @@ sklearn 的官方资源详见以下网址:
 
 在介绍随机森林之前，我们需要引入另一个机器学习算法：决策树（Decision Tree）。决策树的核心思想是<strong>不断挑选特征分裂节点，直到最后一层叶子结点时实现分类</strong>。下图展示了一个简易的决策树：其中 F1、F2、F3 均为特征，0 / 1 分别代表分类结果是阴性 / 阳性。以示意图为例，根节点特征是 F1，若该样本的 F1 特征满足对应的条件，则进入左孩子节点继续分裂，否则进入右孩子节点，分类结果为 0（阴性）；这个过程将地递归进行，直到到达叶子结点。决策树的节点分裂依据是<strong>信息增益</strong><a href="#note1">[1]</a>，这里我们先不展开介绍，后续的博客中我们将为决策树算法单开一个专题。
 
-<img src="/img/决策树示意图.png" alt="决策树示意图" width=70%>
+<img src="/img/scikit-learn学习_随机森林/决策树示意图.png" alt="决策树示意图" width=70%>
 
 随机森林算法和决策树高度相关，简单来说，<strong>随机森林是多个决策树的集成学习算法</strong>。集成学习（Ensemble Learning）旨在通过融合多个基分类器的预测结果以提高模型的泛化能力，常用的策略有 Bagging，Boosting，Stacking 等。随机森林属于 Bagging 集成的一种，其核心过程如下<a href="#note2">[2]</a>：
 
@@ -55,11 +55,11 @@ sklearn 的官方资源详见以下网址:
 
 为便于演示，本文中的所有演示代码均在 jupyter lab 上编写。数据集采用 sklearn 提供的鸢尾花数据集，加载数据如下：
 
-<img alt="加载鸢尾花数据集" src="/img/加载鸢尾花数据集.png" width=70%>
+<img alt="加载鸢尾花数据集" src="/img/scikit-learn学习_随机森林/加载鸢尾花数据集.png" width=70%>
 
 通过打印 numpy 数组的形状，我们可以发现：样本共有 150 条，特征有四列。在构建模型前，我们需要划分训练集、验证集和测试集：
 
-<img alt="划分数据集" src="/img/划分数据集.png" width=100%>
+<img alt="划分数据集" src="/img/scikit-learn学习_随机森林/划分数据集.png" width=100%>
 
 接下来构建随机森林模型。随机森林在 sklearn 库中的接口是`RandomForestClassifer`。理论上来说，我们直接实例化这个类，使用默认参数即可完成预测。但在实际的模型构建过程中，有许多未确定的模型参数。为了使算法的性能尽可能达到最高，需要对模型进行<strong>调参</strong>。寻找最佳参数组合的过程即为模型的调参过程。在本实验中，我们选择网格搜索（Grid Search）方法调参（除了网格搜索外，也有一些其他的调参方法，如贝叶斯优化、随机搜索等<a href="#note3">[3]</a>）。网格搜索的核心思想是：遍历程序设置的参数网格中所有可能的参数组合，根据定义的指标寻找最优模型。因此，需要我们自己显式地给出参数网格。
 
@@ -77,7 +77,7 @@ sklearn 的官方资源详见以下网址:
 
 在设计好参数网格后，需要实例化 GridSearch 对象实现网格搜索。我们选择准确率（Accuracy）作为优化指标，示例代码如下图。经尝试后发现，笔者的计算机只能设置`n_jobs=1`，否则会报错。
 
-<img src="/img/网格参数.png" alt="网格参数">
+<img src="/img/scikit-learn学习_随机森林/网格参数.png" alt="网格参数">
 
 调用 GridSearchCV 对象的 fit 方法即可实现模型的训练，即
 
@@ -87,19 +87,19 @@ grid_search.fit(X)
 
 模型训练后，GridSearchCV 对象提供了一系列属性供我们调用，以获取交叉验证结果，最佳模型等。`cv_results_`属性给出了一个包含所有的交叉验证结果的字典。`best_params_`给出了最佳的参数组合，衡量模型性能指标是 GridSearchCV 对象中设置的 `scoring="accuracy"`。`best_score_`给出了最佳交叉验证分数。`best_estimator_`给出了最佳模型。以上属性获取结果如下：
 
-<img alt="gridsearch属性" src="/img/gridsearch属性.png">
+<img alt="gridsearch属性" src="/img/scikit-learn学习_随机森林/gridsearch属性.png">
 
 获取到最佳的模型后，我们在独立测试集上进行测试，以验证模型在各项指标上的性能。具体的指标计算可直接调用 sklearn 中提供的 API。有些指标的计算不仅要模型输出预测标签，还需要输出预测概率，可分别通过`predict`方法和`predict_proba`方法获取。
 
-<img alt="预测标签和概率" src="/img/预测标签和概率.png">
+<img alt="预测标签和概率" src="/img/scikit-learn学习_随机森林/预测标签和概率.png">
 
 由于 iris 数据集是一个三分类任务，所以`predict_proba`有三列，分别对应每个类别的预测概率。通过以下代码计算各个指标：
 
-<img alt="指标计算" src="/img/指标计算.png">
+<img alt="指标计算" src="/img/scikit-learn学习_随机森林/指标计算.png">
 
 最后，调用 joblib 库将模型保存下来，方便后续使用：
 
-<img alt="模型保存与加载" src="/img/模型保存与加载.png">
+<img alt="模型保存与加载" src="/img/scikit-learn学习_随机森林/模型保存与加载.png">
 
 <h2 id="chapter4">4. 代码实现</h2>
 

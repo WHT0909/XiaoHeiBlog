@@ -58,7 +58,7 @@ Maven 提供了跨平台的自动构建项目方法，在 IDEA 的 Lifecycle 中
 
 在 IntelliJ IDEA 中可直接创建 Maven 项目，项目结构如下图：
 
-<img src="/img/Maven项目结构.png" alt="图1. Maven 项目结构" style="width:200px; margin: 0 auto; display: block">
+<img src="/img/Maven学习笔记/Maven项目结构.png" alt="图1. Maven 项目结构" style="width:200px; margin: 0 auto; display: block">
 
 其中 src 为主程序文件夹，其下的 java 文件夹存放 java 源代码，resources 文件夹存放依赖；test 文件夹存放测试程序；target 文件夹存放编译、打包出来的文件或临时文件；pom.xml 为核心配置文件
 
@@ -200,7 +200,7 @@ public class UserServiceTest {
 
 常用的断言方法如下：
 
-<image src="/img/单元测试_断言.png" alt="断言">
+<image src="/img/Maven学习笔记/单元测试_断言.png" alt="断言">
 
 其中 exp 是预期的输出结果，act 是实际的输出结果，msg 是报错的提示信息
 
@@ -227,7 +227,7 @@ public void getGenderTestWithAssert2(){
 
 <h2 id="chapter5.2">5.2 JUnit 常见注解</h2>
 
-<img src="/img/JUnit常见注解.png" alt="JUnit常见注解">
+<img src="/img/Maven学习笔记/JUnit常见注解.png" alt="JUnit常见注解">
 
 注意：BeforeAll 和 AfterAll 只能用于静态（static）方法
 

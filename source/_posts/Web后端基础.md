@@ -34,7 +34,7 @@ SpringBoot：快速开发 Web 项目，简化开发，提高效率
 
 创建好的 SpringBoot 项目结构如下：
 
-<img src="/img/SpringBoot项目结构.png" alt="SpringBoot项目结构" style="width:400px; margin: 0 auto; display: block">
+<img src="/img/Vue学习笔记-1/SpringBoot项目结构.png" alt="SpringBoot项目结构" style="width:400px; margin: 0 auto; display: block">
 
 这里已经删掉了不需要的项目结构，只保留了核心：src 文件夹和 pom.xml
 
@@ -111,11 +111,11 @@ HTTP：超文本传输协议，规定了浏览器和服务器之间数据传输�
 
 GET 请求数据格式：
 
-<img src="/img/GET请求协议.png" alt="GET 请求数据格式">
+<img src="/img/Web后端基础/GET请求协议.png" alt="GET 请求数据格式">
 
 POST 请求数据格式：
 
-<img src="/img/POST请求协议.png" alt="POST 请求数据格式">
+<img src="/img/Web后端基础/POST请求协议.png" alt="POST 请求数据格式">
 
 POST 请求数据的请求头和请求体之间有一个空行
 
@@ -180,9 +180,9 @@ header: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 
 <h3>4.3 HTTP 响应协议</h3>
 
-<img src="/img/响应协议.png" alt="响应协议"><br>
+<img src="/img/Web后端基础/响应协议.png" alt="响应协议"><br>
 
-<img src="/img/状态码.png" alt="状态码">
+<img src="/img/Web后端基础/状态码.png" alt="状态码">
 
 <h3>4.4 响应数据设置</h3>
 
@@ -223,7 +223,7 @@ public class ResponseController {
 
 在浏览器中输入`http://localhost:8080/response`，请求结果如下：
 
-<img src="/img/response请求结果.png" alt="response请求结果">
+<img src="/img/Web后端基础/response请求结果.png" alt="response请求结果">
 
 Spring 中提供了 ResponseEntity，将请求结果封装为一个对象供程序员调用，示例如下:
 
