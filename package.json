@@ -34,6 +34,7 @@
     "semver": "^7.7.3"
   },
   "devDependencies": {
+    "baseline-browser-mapping": "^2.10.7",
     "dotenv": "^17.2.3"
   }
 }
